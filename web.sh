@@ -55,7 +55,7 @@ launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist
 
 # Install Memcached
 brew install memcached
-sudo cp `brew --prefix nginx`/homebrew.mxcl.memcached.plist ~/Library/LaunchAgents/
+sudo cp `brew --prefix memcached`/homebrew.mxcl.memcached.plist ~/Library/LaunchAgents/
 launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.memcached.plist
 
 # Install DNSMasq to replace /etc/hosts
