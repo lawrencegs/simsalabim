@@ -64,7 +64,7 @@ launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.memcached.plist
 # Install DNSMasq to replace /etc/hosts
 brew install dnsmasq 
 cp $(brew list dnsmasq | grep /dnsmasq.conf.example$) /usr/local/etc/dnsmasq.conf
-cp $(brew list dnsmasq | grep /homebrew.mxcl.dnsmasq.plist$) /Library/LaunchDaemons/
+sudo cp $(brew list dnsmasq | grep /homebrew.mxcl.dnsmasq.plist$) /Library/LaunchDaemons/
 launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
 
 $PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
