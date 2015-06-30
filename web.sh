@@ -79,14 +79,14 @@ echo "installing binaries..."
 brew install ${binaries[@]}
 
 brew cleanup
-
+brew tap caskroom/versions
 brew install caskroom/cask/brew-cask
 
 # Apps
 apps=(
   google-chrome
   firefox
-  sublime-text
+  sublime-text3
   virtualbox
   atom
   skype
