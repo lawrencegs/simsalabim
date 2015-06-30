@@ -37,12 +37,13 @@ brew tap homebrew/homebrew-php
 brew install --without-apache --with-fpm --with-mysql php55
 echo 'export PATH="/usr/local/sbin:$PATH"' >> ~/.bash_profile 
 . ~/.bash_profile
-sudo cp `brew --prefix php55`/homebrew.mxcl.php55.plist ~/Library/LaunchDaemons/
-launchctl load -w ~/Library/LaunchDaemons/homebrew.mxcl.php55.plist
+sudo cp `brew --prefix php55`/homebrew.mxcl.php55.plist /Library/LaunchDaemons/
+launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.php55.plist
 
 # Install NGINX
 brew install nginx
-sudo cp `brew --prefix nginx`/homebrew.mxcl.nginx.plist ~/Library/LaunchDaemons/
+sudo cp `brew --prefix nginx`/homebrew.mxcl.nginx.plist /Library/LaunchDaemons/
+launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
 sudo sed -i -e 's/`whoami`/root/g' `brew --prefix nginx`/homebrew.mxcl.nginx.plist
 sudo mkdir /var/log/nginx/
 
