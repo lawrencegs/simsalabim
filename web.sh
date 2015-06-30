@@ -15,7 +15,8 @@ if test ! $(which brew); then
 fi
 
 # Update homebrew recipes
-brew update
+echo "Updating homebrew"
+brew update -v
 
 # Install GNU core utilities (those that come with OS X are outdated)
 brew install coreutils
@@ -36,6 +37,7 @@ brew tap homebrew/homebrew-php
 brew install --without-apache --with-fpm --with-mysql php55
 echo 'export PATH="/usr/local/sbin:$PATH"' >> ~/.bash_profile 
 . ~/.bash_profile
+sudo cp `brew --prefix php55`/homebrew.mxcl.php55.plist /Library/LaunchDaemons/
 launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php55.plist
 
 # Install NGINX
