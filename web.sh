@@ -86,7 +86,7 @@ brew install caskroom/cask/brew-cask
 apps=(
   google-chrome
   firefox
-  sublime-text3
+  sublime-text
   virtualbox
   atom
   skype
