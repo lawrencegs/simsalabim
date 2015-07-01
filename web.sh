@@ -15,7 +15,8 @@ if test ! $(which brew); then
 fi
 
 # Update homebrew recipes
-brew update
+echo "Updating homebrew"
+brew update -v
 
 # Install GNU core utilities (those that come with OS X are outdated)
 brew install coreutils
@@ -36,11 +37,13 @@ brew tap homebrew/homebrew-php
 brew install --without-apache --with-fpm --with-mysql php55
 echo 'export PATH="/usr/local/sbin:$PATH"' >> ~/.bash_profile 
 . ~/.bash_profile
-launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php55.plist
+sudo cp `brew --prefix php55`/homebrew.mxcl.php55.plist /Library/LaunchDaemons/
+launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.php55.plist
 
 # Install NGINX
 brew install nginx
 sudo cp `brew --prefix nginx`/homebrew.mxcl.nginx.plist /Library/LaunchDaemons/
+launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
 sudo sed -i -e 's/`whoami`/root/g' `brew --prefix nginx`/homebrew.mxcl.nginx.plist
 sudo mkdir /var/log/nginx/
 
@@ -55,13 +58,13 @@ launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist
 
 # Install Memcached
 brew install memcached
-sudo cp `brew --prefix nginx`/homebrew.mxcl.memcached.plist ~/Library/LaunchAgents/
+sudo cp `brew --prefix memcached`/homebrew.mxcl.memcached.plist ~/Library/LaunchAgents/
 launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.memcached.plist
 
 # Install DNSMasq to replace /etc/hosts
 brew install dnsmasq 
 cp $(brew list dnsmasq | grep /dnsmasq.conf.example$) /usr/local/etc/dnsmasq.conf
-cp $(brew list dnsmasq | grep /homebrew.mxcl.dnsmasq.plist$) /Library/LaunchDaemons/
+sudo cp $(brew list dnsmasq | grep /homebrew.mxcl.dnsmasq.plist$) /Library/LaunchDaemons/
 launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
 
 $PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
@@ -76,7 +79,7 @@ echo "installing binaries..."
 brew install ${binaries[@]}
 
 brew cleanup
-
+brew tap caskroom/versions
 brew install caskroom/cask/brew-cask
 
 # Apps
