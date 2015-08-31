@@ -37,6 +37,7 @@ brew tap homebrew/homebrew-php
 brew install --without-apache --with-fpm --with-mysql php55
 brew install php55-memcached
 brew install php55-imagick
+brew install php55-mcrypt
 echo 'export PATH="/usr/local/sbin:$PATH"' >> ~/.bash_profile 
 . ~/.bash_profile
 sudo cp `brew --prefix php55`/homebrew.mxcl.php55.plist /Library/LaunchDaemons/
